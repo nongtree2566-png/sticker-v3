@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4Deksticker Studio Brand.com</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Premium Top Bar -->
+<div class="announcement-bar">
+    <div class="ann-left">
+        ✦ Creative Branding & Sticker Production 
+    </div> 
+</div>
+<nav>
+
+<div class="logo">4Deksticker</div>
+
+<!-- hamburger -->
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+<p class="hero-tag">CREATIVE BRANDING STUDIO</p>
+<div class="accent-line"></div>
+<ul class="nav-links">
+
+<li>
+<a href="./">Home</a>
+</li>
+
+<li>
+<a href="#work">Work</a>
+</li>
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
+</ul>
+
+<a href="#contact" class="nav-btn">Order Now</a>
+
+</nav>
+<div class="menu-overlay"></div>
+
+<section class="hero">
+
+  <!-- Particle Background -->
+  <canvas id="particles"></canvas>
+
+
+  <div class="hero-content">
+    <h1 class="title">
+      4Deksticker Studio
+      <span class="line-light"></span>
+    </h1>
+
+    <p class="subtitle">
+      รับออกแบบ ป้ายไวนิล สติ๊กเกอร์ และงานโฆษณาครบวงจร
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn primary">ติดต่อเรา</a>
+      <a href="#work" class="btn outline">ดูผลงาน</a>
+    </div>
+  </div>
+
+</section>
+<section id="work" style="padding:100px 20px; text-align:center;">
+
+<h2>ผลงานของเรา</h2>
+
+<p>กำลังอัปเดตผลงานเร็ว ๆ นี้ 🔥</p>
+
+</section>
+<section id="contact" class="contact">
+
+<h2 class="contact-title">
+  Let's Work Together
+</h2>
+
+<p class="contact-sub">
+ติดต่อเราเพื่อออกแบบ สติ๊กเกอร์ ป้ายไวนิล และงานโฆษณาแบบมืออาชีพ
+</p>
+
+<div class="contact-grid">
+
+<a href="https://lin.ee/BOSnMod" target="_blank" class="contact-card">
+<i class="fab fa-line"></i>
+<h3>Line Official</h3>
+<span>4deksticker Official</span>
+</a>
+
+<a href="https://www.instagram.com/4deksticker" target="_blank" class="contact-card">
+<i class="fab fa-instagram"></i>
+<h3>Instagram</h3>
+<span>@4deksticker</span>
+</a>
+
+<a href="https://www.facebook.com/share/1AbGmBTffj/?mibextid=wwXIfr" target="_blank" class="contact-card">
+<i class="fab fa-facebook-f"></i>
+<h3>Facebook</h3>
+<span>4Deksticker</span>
+</a>
+
+<div class="contact-card">
+<i class="fas fa-envelope"></i>
+<h3>Email</h3>
+<span>4deksticker@gmail.com</span>
+</div>
+
+<div class="contact-card">
+<i class="fas fa-phone"></i>
+<h3>Phone</h3>
+<span>095-648-6561</span><br>
+<span>093-176-7336</span>
+</div>
+
+</div>
+
+<div class="contact-cta">
+
+<h3>พร้อมเริ่มงานแล้ว</h3>
+
+
+</div>
+
+</section>
+
+<footer>
+    © 2026 4Deksticker | ขอบคุณที่ใช้บริการ
+</footer>
+
+<script>
+
+/* ================= PARTICLES ================= */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+}
+
+resizeCanvas();
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x: Math.random()*canvas.width,
+
+y: Math.random()*canvas.height,
+
+size: Math.random()*2,
+
+speedX:(Math.random()-0.5)*0.5,
+
+speedY:(Math.random()-0.5)*0.5
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+p.x += p.speedX;
+p.y += p.speedY;
+
+if(p.x<0||p.x>canvas.width) p.speedX*=-1;
+if(p.y<0||p.y>canvas.height) p.speedY*=-1;
+
+ctx.fillStyle="rgba(255,255,255,0.4)";
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+
+ctx.fill();
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+window.addEventListener("resize",resizeCanvas);
+
+
+
+/* ================= MOBILE MENU ================= */
+
+const toggle = document.querySelector(".menu-toggle");
+
+const nav = document.querySelector(".nav-links");
+
+const overlay = document.querySelector(".menu-overlay");
+
+toggle.addEventListener("click",()=>{
+
+nav.classList.toggle("active");
+
+overlay.classList.toggle("show");
+
+});
+
+
+overlay.addEventListener("click",()=>{
+
+nav.classList.remove("active");
+
+overlay.classList.remove("show");
+
+/* ===== CLOSE MENU WHEN CLICK LINK ===== */
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+nav.classList.remove("active");
+
+overlay.classList.remove("show");
+
+});
+
+});
+
+});
+
+</script>
+</body>
+</html>
