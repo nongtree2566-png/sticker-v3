@@ -214,36 +214,21 @@ const nav = document.querySelector(".nav-links");
 const overlay = document.querySelector(".menu-overlay");
 
 toggle.addEventListener("click",()=>{
-
-nav.classList.toggle("active");
-
-overlay.classList.toggle("show");
-
+  nav.classList.toggle("active");
+  overlay.classList.toggle("show");
 });
-
 
 overlay.addEventListener("click",()=>{
-
-nav.classList.remove("active");
-
-overlay.classList.remove("show");
-
-/* ===== CLOSE MENU WHEN CLICK LINK ===== */
+  nav.classList.remove("active");
+  overlay.classList.remove("show");
+});
 
 document.querySelectorAll(".nav-links a").forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-nav.classList.remove("active");
-
-overlay.classList.remove("show");
-
+  link.addEventListener("click",()=>{
+    nav.classList.remove("active");
+    overlay.classList.remove("show");
+  });
 });
-
-});
-
-});
-
 </script>
 </body>
 </html>
