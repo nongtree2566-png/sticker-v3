@@ -729,6 +729,167 @@ scroll-margin-top:100px;
   background:linear-gradient(to right,#ffcc00,#ff6a00);
   margin:25px 0;
 }
+.hero {
+  position: relative;
+  min-height: 100svh;   /* แทน 100vh (ใหม่กว่าและแม่นกว่าในมือถือ) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 120px 8% 80px;  /* เผื่อ nav ด้านบน */
+  overflow: hidden;
+}
+.hero-content {
+  max-width: 600px;
+}
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* ใส่เลเยอร์มืดทับ เพื่อให้ตัวหนังสือชัด */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+@media (max-width:768px){
+
+.hero{
+  min-height: 100svh;
+  padding: 140px 6% 80px;
+}
+
+.hero-content{
+  max-width: 100%;
+}
+
+}
+html, body {
+  height: 100%;
+}
+/* =========================
+   FINAL OVERFLOW FIX ADD-ON
+   (วางล่างสุดของไฟล์)
+========================= */
+
+/* กันล้นแนวนอนทั้งเว็บ */
+html, body {
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+/* ป้องกัน element ดันจอ */
+section, div {
+  max-width:100%;
+}
+
+/* แก้ background fixed ที่ทำให้มือถือบั๊ก */
+@media(max-width:768px){
+  body{
+    background-attachment:scroll !important;
+  }
+}
+
+/* ใช้ dvh ทับ hero เดิม */
+.hero{
+  min-height:100dvh !important;
+  height:auto !important;
+}
+
+/* ดันเนื้อหาเผื่อ nav fixed */
+body{
+  padding-top:80px;
+}
+
+/* เมนูมือถือให้เต็มจอจริง */
+@media(max-width:768px){
+  .nav-links{
+    height:100dvh !important;
+  }
+}
+
+/* กัน video หรือ img ทำจอล้น */
+img, video{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* กันปัญหา 100vw */
+*{
+  box-sizing:border-box;
+}
+/* =========================
+   MOBILE HARD FIX
+========================= */
+
+@media (max-width:768px){
+
+  /* ลด padding ซ้ายขวา */
+  .hero{
+    padding:120px 20px 80px !important;
+    text-align:center;
+    justify-content:center;
+  }
+
+  /* กันหัวข้อดันจอ */
+  .title{
+    font-size:28px !important;
+    line-height:1.2;
+    letter-spacing:1px !important;
+    word-break:break-word;
+  }
+
+  /* subtitle ไม่ให้ยาวเกิน */
+  .subtitle{
+    font-size:15px;
+    line-height:1.5;
+  }
+
+  /* ปุ่มเรียงลงและเต็มจอ */
+  .hero-buttons{
+    flex-direction:column;
+    width:100%;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
+  /* โลโก้ไม่ให้ดัน */
+  .logo{
+    font-size:16px;
+    white-space:nowrap;
+  }
+
+  /* nav menu กันดันจอ */
+  nav{
+    padding:16px 20px;
+  }
+
+  /* กัน element ดันเกินจอ */
+  .hero-content{
+    max-width:100%;
+  }
+
+}
+/* ป้องกันทุก element ดันจอ */
+body{
+  overflow-x:hidden;
+}
+
+*{
+  max-width:100%;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -744,4 +905,264 @@ section {
   object-fit: cover;
   z-index: -1;
   pointer-events: none; /* สำคัญมาก */
+}
+.hero{
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("c2477fa3-a8fd-4002-bd30-b7288d25c61b.jpg") center/cover no-repeat;
+  z-index:-1;
+}
+.hero-bg{
+  filter: brightness(0.8) contrast(1.1);
+}.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+}
+.hero{
+  background-attachment: fixed;
+}
+#particles{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+.hero::after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:100%;
+height:180px;
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,0) 0%,
+#05050a 100%
+);
+z-index:1;
+pointer-events:none;
+}
+.hero{
+border-bottom:1px solid rgba(255,255,255,.06);
+box-shadow:0 60px 120px rgba(0,0,0,.6);
+}
+.hero::before{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:2px;
+background:linear-gradient(
+90deg,
+transparent,
+var(--accent1),
+var(--accent2),
+transparent
+);
+background-size:200%;
+animation:lineMove 6s linear infinite;
+opacity:.4;
+}
+
+@keyframes lineMove{
+0%{background-position:200% 0;}
+100%{background-position:-200% 0;}
+}
+.work-section{
+position:relative;
+padding:120px 8%;
+background:rgba(5,5,10,.85);
+backdrop-filter:blur(20px);
+overflow:hidden;
+}
+
+.work-section::before{
+content:"";
+position:absolute;
+inset:0;
+background:url("c2477fa3-a8fd-4002-bd30-b7288d25c61b.jpg") center/cover no-repeat;
+filter:blur(30px);
+opacity:.25;
+z-index:-1;
+}
+.work-title{
+font-size:38px;
+margin-bottom:60px;
+text-align:center;
+background:linear-gradient(90deg,#fff,var(--accent1),var(--accent2));
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.portfolio-slider{
+overflow:hidden;
+width:100%;
+}
+
+.portfolio-track{
+display:flex;
+gap:40px;
+animation:scrollWork 25s linear infinite;
+}
+
+.portfolio-card{
+min-width:320px;
+height:420px;
+border-radius:20px;
+overflow:hidden;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+transition:.4s;
+}
+
+.portfolio-card:hover{
+transform:translateY(-15px);
+box-shadow:0 20px 60px rgba(255,45,117,.3);
+}
+
+.portfolio-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+@keyframes scrollWork{
+0%{
+transform:translateX(0);
+}
+100%{
+transform:translateX(-50%);
+}
+}
+.work-section{
+position:relative;
+padding:120px 8%;
+background:rgba(5,5,10,.85);
+backdrop-filter:blur(20px);
+text-align:center;
+overflow:hidden;
+}
+
+.work-title{
+font-size:36px;
+margin-bottom:60px;
+background:linear-gradient(90deg,#fff,var(--accent1),var(--accent2));
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+}
+/* ===============================
+   SLIDER FINAL CLEAN VERSION
+================================= */
+
+.slider{
+position:relative;
+width:100%;
+max-width:900px;
+margin:80px auto;
+aspect-ratio:4/3;   /* สูงกำลังดี */
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+
+/* Slide */
+.slide{
+position:absolute;
+inset:0;
+opacity:0;
+transition:opacity .8s ease;
+pointer-events:none;
+}
+
+.slide.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;   /* คอมยังสวยเต็มกรอบ */
+}
+
+/* ปุ่ม */
+.prev,.next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,.5);
+border:none;
+color:#fff;
+font-size:26px;
+padding:10px 16px;
+cursor:pointer;
+border-radius:50%;
+transition:.3s;
+z-index:5;
+}
+
+.prev:hover,.next:hover{
+background:var(--accent1);
+}
+
+.prev{left:20px;}
+.next{right:20px;}
+
+/* dots */
+.dots{
+position:absolute;
+bottom:20px;
+width:100%;
+text-align:center;
+z-index:5;
+}
+
+.dot{
+display:inline-block;
+width:12px;
+height:12px;
+margin:0 6px;
+background:rgba(255,255,255,.4);
+border-radius:50%;
+cursor:pointer;
+transition:.3s;
+}
+
+.dot.active{
+background:var(--accent1);
+transform:scale(1.2);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.slider{
+aspect-ratio:1/1;  /* มือถือเป็นสี่เหลี่ยมจัตุรัส */
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
+
+}
+@media(max-width:768px){
+
+.slide img{
+object-fit:contain;   /* มือถือไม่ครอป */
+background:#000;      /* กันขอบขาว */
+}
+
 }
