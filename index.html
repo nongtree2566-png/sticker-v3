@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="google-site-verification" content="BKfrFqwrJCJ5Zv9JXP_bhlTOIAOKPyUs6-7kMBevSjE" />
 <title>4Deksticker Studio Brand.com</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -12,48 +10,36 @@
 </head>
 
 <body>
-    <!-- Premium Top Bar -->
+<!-- Premium Top Bar -->
 <div class="announcement-bar">
     <div class="ann-left">
         ✦ Creative Branding & Sticker Production 
     </div> 
 </div>
-<nav>
 
+<nav>
 <div class="logo">4Deksticker</div>
 
 <!-- hamburger -->
 <div class="menu-toggle">
 <i class="fas fa-bars"></i>
 </div>
-<p class="hero-tag">CREATIVE BRANDING STUDIO</p>
-<div class="accent-line"></div>
+
 <ul class="nav-links">
-
-<li>
-<a href="./">Home</a>
-</li>
-
-<li>
-<a href="#work">Work</a>
-</li>
-
-<li>
-<a href="#contact">Contact</a>
-</li>
-
+<li><a href="./">Home</a></li>
+<li><a href="#work">Work</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 
 <a href="#contact" class="nav-btn">Order Now</a>
-
 </nav>
+
 <div class="menu-overlay"></div>
 
 <section class="hero">
 
-  <!-- Particle Background -->
+  <div class="hero-bg"></div>
   <canvas id="particles"></canvas>
-
 
   <div class="hero-content">
     <h1 class="title">
@@ -71,14 +57,42 @@
     </div>
   </div>
 
+</section> <!-- ✅ เพิ่มปิด hero ตรงนี้ -->
+
+<section class="work-section">
+
+  <div class="bg-blur"></div>
+
+  <h2 class="work-title">ผลงานการออกแบบของเรา</h2>
+
+  <div class="slider">
+
+    <div class="slide active">
+      <img src="629928039_1595694331479593_8727350105300988096_n.jpg">
+    </div>
+
+    <div class="slide">
+      <img src="c2477fa3-a8fd-4002-bd30-b7288d25c61b.jpg">
+    </div>
+
+    <div class="slide">
+      <img src="641819095_910729228210219_2337728776626741557_n.jpg">
+    </div>
+
+    <!-- ปุ่ม -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+    <!-- dots -->
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
 </section>
-<section id="work" style="padding:100px 20px; text-align:center;">
 
-<h2>ผลงานของเรา</h2>
-
-<p>กำลังอัปเดตผลงานเร็ว ๆ นี้ 🔥</p>
-
-</section>
 <section id="contact" class="contact">
 
 <h2 class="contact-title">
@@ -125,10 +139,7 @@
 </div>
 
 <div class="contact-cta">
-
 <h3>พร้อมเริ่มงานแล้ว</h3>
-
-
 </div>
 
 </section>
@@ -145,83 +156,66 @@ const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas(){
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
-
 resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 let particles = [];
 
-for(let i=0;i<80;i++){
-
-particles.push({
-
-x: Math.random()*canvas.width,
-
-y: Math.random()*canvas.height,
-
-size: Math.random()*2,
-
-speedX:(Math.random()-0.5)*0.5,
-
-speedY:(Math.random()-0.5)*0.5
-
-});
-
+for(let i=0;i<120;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    size: Math.random()*1.5 + 0.5,
+    speedX:(Math.random()-0.5)*0.5,
+    speedY:(Math.random()-0.5)*0.5
+  });
 }
 
 function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x += p.speedX;
+    p.y += p.speedY;
 
-particles.forEach(p=>{
+    if(p.x<0||p.x>canvas.width) p.speedX*=-1;
+    if(p.y<0||p.y>canvas.height) p.speedY*=-1;
 
-p.x += p.speedX;
-p.y += p.speedY;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+    ctx.fillStyle="rgba(255,255,255,0.8)";
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = "rgba(255,255,255,0.8)";
+    ctx.fill();
+  });
 
-if(p.x<0||p.x>canvas.width) p.speedX*=-1;
-if(p.y<0||p.y>canvas.height) p.speedY*=-1;
-
-ctx.fillStyle="rgba(255,255,255,0.4)";
-
-ctx.beginPath();
-
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-
-ctx.fill();
-
-});
-
-requestAnimationFrame(animate);
-
+  requestAnimationFrame(animate);
 }
-
 animate();
-
-window.addEventListener("resize",resizeCanvas);
-
 
 
 /* ================= MOBILE MENU ================= */
 
 const toggle = document.querySelector(".menu-toggle");
-
 const nav = document.querySelector(".nav-links");
-
 const overlay = document.querySelector(".menu-overlay");
 
-toggle.addEventListener("click",()=>{
-  nav.classList.toggle("active");
-  overlay.classList.toggle("show");
-});
+if(toggle){
+  toggle.addEventListener("click",()=>{
+    nav.classList.toggle("active");
+    overlay.classList.toggle("show");
+  });
+}
 
-overlay.addEventListener("click",()=>{
-  nav.classList.remove("active");
-  overlay.classList.remove("show");
-});
+if(overlay){
+  overlay.addEventListener("click",()=>{
+    nav.classList.remove("active");
+    overlay.classList.remove("show");
+  });
+}
 
 document.querySelectorAll(".nav-links a").forEach(link=>{
   link.addEventListener("click",()=>{
@@ -229,6 +223,69 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
     overlay.classList.remove("show");
   });
 });
+
+
+/* ================= SLIDER ================= */
+
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+const bg = document.querySelector(".bg-blur");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+
+let current = 0;
+let autoInterval;
+
+function showSlide(index){
+  slides.forEach(s=>s.classList.remove("active"));
+  dots.forEach(d=>d.classList.remove("active"));
+
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+
+  if(bg){
+    bg.style.backgroundImage =
+      `url(${slides[index].querySelector("img").src})`;
+  }
+
+  current = index;
+}
+
+function nextSlide(){
+  showSlide((current+1)%slides.length);
+}
+
+function prevSlide(){
+  showSlide((current-1+slides.length)%slides.length);
+}
+
+if(nextBtn) nextBtn.addEventListener("click", nextSlide);
+if(prevBtn) prevBtn.addEventListener("click", prevSlide);
+
+dots.forEach((dot,i)=>{
+  dot.addEventListener("click",()=> showSlide(i));
+});
+
+function startAuto(){
+  autoInterval = setInterval(nextSlide, 5000);
+}
+
+function stopAuto(){
+  clearInterval(autoInterval);
+}
+
+const slider = document.querySelector(".slider");
+
+if(slider){
+  slider.addEventListener("mouseenter", stopAuto);
+  slider.addEventListener("mouseleave", startAuto);
+}
+
+if(slides.length > 0){
+  showSlide(0);
+  startAuto();
+}
+
 </script>
 </body>
 </html>
